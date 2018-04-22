@@ -13,11 +13,11 @@ import com.microservices.currency.conversion.service.models.CurrencyConversionBe
  * details of a microservice.
  *
  */
-@FeignClient(name= "xyz")
+@FeignClient(name= "currency-exchange-service")
 // Ribbon Client will get instance
 // details from this property(xyz.ribbon.listOfServers) 
 //defined in application.properties
-@RibbonClient(name="xyz")
+@RibbonClient(name="currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
 
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
