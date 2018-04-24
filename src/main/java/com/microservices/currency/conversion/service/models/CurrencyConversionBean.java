@@ -82,5 +82,12 @@ public class CurrencyConversionBean {
 	public void setPort(int port) {
 		this.port = port;
 	}
+
+	@Override
+	public String toString() {
+		return "CurrencyConversionBean [id=" + id + ", from=" + from + ", to=" + to + ", quantity=" + quantity
+				+ ", conversionMultiple=" + conversionMultiple + ", calculatedValue=" + calculatedValue + ", port="
+				+ port + "]";
+	}
 	
 }
