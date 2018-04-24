@@ -13,14 +13,23 @@ import com.microservices.currency.conversion.service.models.CurrencyConversionBe
  * details of a microservice.
  *
  */
-@FeignClient(name= "currency-exchange-service")
+// Change this name to point to zuul proxy so
+// that invocation of exchange microservice
+// will happen through zuul.
+// since we are routing to zuul the request uri
+// should be pre appended with destination microservice
+// that we want to invoke so that zuul will know
+// which microservice it has to route to.
+@FeignClient(name="zuul-api-gateway-service")
 // Ribbon Client will get instance
 // details from this property(xyz.ribbon.listOfServers) 
 //defined in application.properties
+// Ribbon will point to microservice name
+// on which in needs to load balance
 @RibbonClient(name="currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
 
-	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	@GetMapping("/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
 	public abstract CurrencyConversionBean getExchangeValue(@PathVariable("from") String from,
 															@PathVariable("to") String to);
 }
